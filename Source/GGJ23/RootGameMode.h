@@ -6,7 +6,7 @@
 #include "GameFramework/GameModeBase.h"
 #include "RootGameMode.generated.h"
 
-UCLASS()
+UCLASS(Abstract)
 class GGJ23_API ARootGameMode : public AGameModeBase
 {
 	GENERATED_BODY()
