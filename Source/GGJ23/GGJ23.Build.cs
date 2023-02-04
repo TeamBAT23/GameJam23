@@ -9,5 +9,13 @@ public class GGJ23 : ModuleRules
 		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 
 		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "HeadMountedDisplay", "EnhancedInput" });
+		
+		//Gameplay Ability System
+		PublicDependencyModuleNames.AddRange(new string[]
+        {
+        	"GameplayAbilities",
+        	"GameplayTags",
+        	"GameplayTasks"
+        });
 	}
 }
