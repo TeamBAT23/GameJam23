@@ -153,3 +153,4 @@ fabric.properties
 
 Plugins/Developer/RiderLink/
 .idea/
+Platforms/HoloLens/Config/HoloLensEngine.ini
