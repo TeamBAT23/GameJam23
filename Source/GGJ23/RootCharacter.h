@@ -5,11 +5,11 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "InputActionValue.h"
-#include "GGJ23Character.generated.h"
+#include "RootCharacter.generated.h"
 
 
 UCLASS(config=Game)
-class AGGJ23Character : public ACharacter
+class GGJ23_API ARootCharacter : public ACharacter
 {
 	GENERATED_BODY()
 
@@ -38,7 +38,7 @@ class AGGJ23Character : public ACharacter
 	class UInputAction* LookAction;
 
 public:
-	AGGJ23Character();
+	ARootCharacter();
 	
 
 protected:

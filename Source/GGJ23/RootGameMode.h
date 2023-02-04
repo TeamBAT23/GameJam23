@@ -4,15 +4,15 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/GameModeBase.h"
-#include "GGJ23GameMode.generated.h"
+#include "RootGameMode.generated.h"
 
-UCLASS(minimalapi)
-class AGGJ23GameMode : public AGameModeBase
+UCLASS()
+class GGJ23_API ARootGameMode : public AGameModeBase
 {
 	GENERATED_BODY()
 
 public:
-	AGGJ23GameMode();
+	ARootGameMode();
 };
 
 
