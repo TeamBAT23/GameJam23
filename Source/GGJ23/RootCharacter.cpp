@@ -9,6 +9,7 @@
 #include "GameFramework/SpringArmComponent.h"
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
+#include "GameplayAbilitySystem/RootAbilitySystemComponent.h"
 
 
 //////////////////////////////////////////////////////////////////////////
@@ -49,6 +50,16 @@ ARootCharacter::ARootCharacter()
 
 	// Note: The skeletal mesh and anim blueprint references on the Mesh component (inherited from Character) 
 	// are set in the derived blueprint asset named ThirdPersonCharacter (to avoid direct content references in C++)
+
+	//Additional setup needed to support GAS
+	AbilitySystemComponent = CreateDefaultSubobject<URootAbilitySystemComponent>("AbilitySystemComponent");
+	AbilitySystemComponent->SetIsReplicated(true);
+	AbilitySystemComponent->SetReplicationMode(EGameplayEffectReplicationMode::Minimal);
+}
+
+UAbilitySystemComponent* ARootCharacter::GetAbilitySystemComponent() const
+{
+	return AbilitySystemComponent;
 }
 
 void ARootCharacter::BeginPlay()
@@ -86,6 +97,35 @@ void ARootCharacter::SetupPlayerInputComponent(class UInputComponent* PlayerInpu
 
 	}
 
+}
+
+void ARootCharacter::Server_GASInit()
+{
+	AbilitySystemComponent->InitAbilityActorInfo(this, this);
+}
+
+void ARootCharacter::Client_GASInit()
+{
+	AbilitySystemComponent->InitAbilityActorInfo(this, this);
+
+	BindAbilityComponentToInputComponent();
+}
+
+void ARootCharacter::BindAbilityComponentToInputComponent() const
+{
+	//Called from client ability component init as well as input component init.
+	if(AbilitySystemComponent && InputComponent)
+	{
+		const FGameplayAbilityInputBinds Binds{
+			GET_ENUMERATOR_NAME_CHECKED(ERootAbilityInputId, Confirm).ToString(),
+			GET_ENUMERATOR_NAME_CHECKED(ERootAbilityInputId, Cancel).ToString(),
+			"EClawAbilityInputId",
+			static_cast<int32>(ERootAbilityInputId::Confirm),
+			static_cast<int32>(ERootAbilityInputId::Cancel)
+		};
+
+		AbilitySystemComponent->BindAbilityActivationToInputComponent(InputComponent, Binds);
+	}
 }
 
 void ARootCharacter::Move(const FInputActionValue& Value)
