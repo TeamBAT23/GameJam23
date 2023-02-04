@@ -8,7 +8,7 @@
 #include "RootCharacter.generated.h"
 
 
-UCLASS(config=Game)
+UCLASS(config=Game, Blueprintable)
 class GGJ23_API ARootCharacter : public ACharacter
 {
 	GENERATED_BODY()
