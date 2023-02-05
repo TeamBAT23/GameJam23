@@ -23,7 +23,7 @@ public:
 
 
 	UFUNCTION(BlueprintCallable)
-	void SetHealth(float NewValue)
+	void SetHealth(int NewValue)
 	{
 		PlayerCurrentHealth = NewValue;
 
@@ -34,7 +34,7 @@ public:
 	}
 
 	UFUNCTION(BlueprintCallable)
-	void SetMaxHealth(float NewValue)
+	void SetMaxHealth(int NewValue)
 	{
 		int Delta = NewValue - PlayerMaxHealth;
 		PlayerMaxHealth = NewValue;
@@ -49,20 +49,20 @@ public:
 	}
 
 	UFUNCTION(BlueprintCallable)
-	void SetMoney(float NewValue)
+	void SetMoney(int NewValue)
 	{
 		PlayerCurrentMoney = NewValue;
 	}
 
 	UFUNCTION(BlueprintCallable)
-	void AddMoney(float Money)
+	void AddMoney(int Money)
 	{
 		PlayerCurrentMoney += Money;
 	}
 
 	/** @return false if not enough money to subtract*/
 	UFUNCTION(BlueprintCallable)
-	bool SubtractMoney(float Money)
+	bool SubtractMoney(int Money)
 	{
 		if(PlayerCurrentMoney < Money)
 		{
