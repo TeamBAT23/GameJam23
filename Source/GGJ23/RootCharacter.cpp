@@ -84,7 +84,7 @@ void ARootCharacter::BindAbilityComponentToInputComponent() const
 		const FGameplayAbilityInputBinds Binds{
 			GET_ENUMERATOR_NAME_CHECKED(ERootAbilityInputId, Confirm).ToString(),
 			GET_ENUMERATOR_NAME_CHECKED(ERootAbilityInputId, Cancel).ToString(),
-			"EClawAbilityInputId",
+			"ERootAbilityInputId",
 			static_cast<int32>(ERootAbilityInputId::Confirm),
 			static_cast<int32>(ERootAbilityInputId::Cancel)
 		};

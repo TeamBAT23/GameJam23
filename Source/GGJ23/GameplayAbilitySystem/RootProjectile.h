@@ -18,6 +18,6 @@ public:
 		ProjectileMovement = CreateDefaultSubobject<UProjectileMovementComponent>(TEXT("Projectile Movement"));
 	}
 
-	UPROPERTY(EditAnywhere, Category = "Projectile Movement")
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Projectile Movement")
 	UProjectileMovementComponent* ProjectileMovement;
 };

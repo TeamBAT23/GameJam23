@@ -11,7 +11,7 @@ void FRootTargetedEffectHandle::AddTargets(const TArray<FHitResult>& HitResults,
 	{
 		TargetData.Add(new FGameplayAbilityTargetData_SingleTargetHit(HitResult));
 	}
-
+	
 	if (TargetActors.Num() > 0)
 	{
 		FGameplayAbilityTargetData_ActorArray* NewData = new FGameplayAbilityTargetData_ActorArray();
