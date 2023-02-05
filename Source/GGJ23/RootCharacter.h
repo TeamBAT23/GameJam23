@@ -11,13 +11,16 @@
 
 
 UCLASS(Blueprintable, config=Game)
-class GGJ23_API ARootCharacter : public ACharacter, public IAbilitySystemInterface
+class GGJ23_API ARootCharacter : public ACharacter, public IAbilitySystemInterface, public IGameplayTagAssetInterface
 {
 	GENERATED_BODY()
 
 	//Gameplay Ability System
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Abilities", meta = (AllowPrivateAccess = "true"))
 	class URootAbilitySystemComponent* AbilitySystemComponent;
+
+	UPROPERTY(EditAnywhere)
+	FGameplayTagContainer GameplayTags;
 	
 public:
 	ARootCharacter();
@@ -41,6 +44,11 @@ protected:
 	void Server_GASInit();
 	void Client_GASInit();
 	void BindAbilityComponentToInputComponent() const;
+	
+	virtual void GetOwnedGameplayTags(FGameplayTagContainer& TagContainer) const override
+	{
+		TagContainer.AppendTags(GameplayTags);
+	}
 
 	/** Called for movement input */
 	void Move(const FInputActionValue& Value);
